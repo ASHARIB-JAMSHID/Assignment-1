@@ -48,10 +48,23 @@ complex::div(double fr,double fi,double& nr,double& ni)
         }
  nui=(fr*-ni)+(fi*nr);
 
- de=nr*nr+ni*ni;
+ try
+    {
+    de=nr*nr+ni*ni;
+    if (de==0)
+    {
+    throw(12);
+    }
+    nr=nur/de;
+    ni=nui/de;
 
- nr=nur/de;
- ni=nui/de;
+    }
+    
+    catch(...)
+
+    {
+    cout<<"error the answer will not be correct"<<endl;
+    }
 
 }
 
@@ -86,6 +99,20 @@ complex complex::operator/(complex aso)
 {
     complex bnew;
     double n;
+    
+    try
+    {
+    if(((aso.re*aso.re)+(aso.im*aso.im))==0) 
+    {
+        throw(1);
+    }
+    }
+    
+    catch(...)
+    {
+       cout<<"error the answer will not be correct"<<endl;
+    }
+    
     if(aso.im<0)
     {
         bnew.re=(((re*aso.re)+(im*aso.im*(-1))))/((aso.re*aso.re)+(aso.im*aso.im));
